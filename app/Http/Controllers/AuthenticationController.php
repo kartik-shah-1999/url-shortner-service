@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\LoginRequest;
 use App\Http\Requests\RegistrationRequest;
+use App\Models\Company;
 use App\Models\User;
 use Hash;
 use Illuminate\Http\Request;
@@ -46,6 +47,11 @@ class AuthenticationController extends Controller
     }
 
     public function dashboard(){
-        return view('authentication.dashboard');
+        if((int)Auth::user()->role === 1){
+            $companies = Company::all();
+        }else{
+            $companies = Company::where('owner_id',Auth::id())->get();
+        }
+        return view('authentication.dashboard')->with('companies',$companies);
     }
 }
