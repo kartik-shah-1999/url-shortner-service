@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->foreignId('owner_id')->references('id')->on('users')->cascadeOnDelete();
-            $table->string('url')->nullable();
-            $table->string('short_url')->nullable();
+            // $table->string('url')->nullable();
+            // $table->string('short_url')->nullable();
             $table->timestamps();
         });
     }

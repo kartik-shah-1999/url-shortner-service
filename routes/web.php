@@ -18,5 +18,6 @@ Route::middleware('auth')->group(function () {
     Route::post('/logout',[AuthenticationController::class,'logout'])->name('logout');
     Route::get('/addCompany',[CompanyController::class,'addCompanyForm'])->name('addCompanyForm');
     Route::post('/addCompany',[CompanyController::class,'addCompany'])->name('addCompany');
-    Route::view('/inviteUsers/{id}','company.inviteusers', ['users' => User::all()->where('role','!=',1)])->name('inviteUsersForm');
+    Route::get('/inviteUsers/{id}',[CompanyController::class,'inviteUsersForm'])->name('inviteUsersForm');
+    Route::post("/inviteUsers/{id}",[CompanyController::class,'inviteUsers'])->name('inviteUsers');
 });

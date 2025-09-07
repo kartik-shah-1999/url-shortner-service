@@ -14,6 +14,7 @@
         </div>
     </div>
 
+    @if(count($companies))
     <div class="company-info mt-3">
         <table class="table table-bordered">
             <thead class="text-center bg-light">
@@ -46,5 +47,6 @@
             </tbody>
         </table>
     </div>
+    @endif
     {{-- {{ $companies }} --}}
 <x-footer />

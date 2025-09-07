@@ -14,7 +14,7 @@
                             {{ session('success')}}
                     </div>
                     @endif
-                    <form method="post" action="{{ route('addCompany') }}">
+                    <form method="post" action="{{ route('inviteUsers',['id' => $id]) }}">
                         @csrf
                         <label for="">Select user to invite</label>
                         <div class="input-wrapper mb-3">

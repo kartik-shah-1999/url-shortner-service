@@ -14,7 +14,9 @@ return new class extends Migration
         Schema::create('company_users', function (Blueprint $table) {
             $table->id();
             $table->foreignId('company_id')->references('id')->on('companies')->cascadeOnDelete();
-            $table->foreignId('user_id')->references('id')->on('users');
+            $table->foreignId('reciever_id')->references('id')->on('users');
+            $table->foreignId('sender_id')->references('id')->on('users');
+            $table->integer('invitation_status')->default(0);
             $table->timestamps();
         });
     }
