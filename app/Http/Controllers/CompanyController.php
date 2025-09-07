@@ -31,7 +31,15 @@ class CompanyController extends Controller
     }
 
     public function inviteUsersForm($id){
-        $users = User::where('role','!=',1)->orderBy('name','asc')->get();
+        $fetch_role_id = null;
+        if((int)Auth::user()->role === 1){
+            $fetch_role_id = [2];
+        }else{
+            $fetch_role_id = [2,3];
+        }
+        $users = User::whereIn('role',$fetch_role_id)
+                       ->where('id','!=',Auth::id())
+                       ->orderBy('name','asc')->get();
         return view('company.inviteusers')->with(['users'=>$users,'id' => $id]);
     }
 
